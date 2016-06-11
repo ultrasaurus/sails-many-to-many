@@ -25,7 +25,8 @@
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "node ./node_modules/mocha/bin/mocha test/bootstrap.test.js test/integration/**/*.test.js"
   },
   "main": "app.js",
   "repository": {
@@ -33,5 +34,10 @@
     "url": "git://github.com/sarah/sails-many-to-many.git"
   },
   "author": "sarah",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3",
+    "sails-memory": "^0.10.7"
+  }
 }
