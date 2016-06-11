@@ -131,3 +131,9 @@ set up the grunt task
 echo "
 module.exports = require('sails-db-migrate').gruntTasks;
 " >> tasks/register/dbMigrate.js
+```
+
+set up related model:
+```
+sails generate model org name:string
+```
