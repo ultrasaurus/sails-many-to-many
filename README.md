@@ -136,4 +136,5 @@ module.exports = require('sails-db-migrate').gruntTasks;
 set up related model:
 ```
 sails generate model org name:string
+sails generate model OrgMembership userId:integer, orgId:integer
 ```
