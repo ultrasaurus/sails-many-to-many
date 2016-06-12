@@ -6,10 +6,8 @@
  */
 
 module.exports = {
-
+  tableName: 'org',
   attributes: {
-
     name : { type: 'string' }
   }
 };
-
