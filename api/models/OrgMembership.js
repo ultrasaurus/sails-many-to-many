@@ -6,18 +6,11 @@
  */
 
 module.exports = {
-
+  tableName: 'org_membership',
   attributes: {
+    user_id: { type: 'integer', foreignKey: true},
+    user: { model: 'User', columnName: 'user_id' },
+    org: { model: 'Org',  foreignKey: true, columnName: 'org_id' }
 
-    userId : { type: 'integer,' },
-
-    orgId : { type: 'integer' },
-
-    user:{
-      model:'user'
-    },
-    org: {
-      model: 'org'
-    }
   }
 };

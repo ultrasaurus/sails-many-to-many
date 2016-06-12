@@ -9,5 +9,12 @@ module.exports = {
   tableName: 'org',
   attributes: {
     name : { type: 'string' }
+  },
+
+  users: {
+    collection: 'user',
+    via: 'org',
+    through: 'orgmembership'
   }
+
 };

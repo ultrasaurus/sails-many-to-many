@@ -57,10 +57,11 @@ describe('User', function() {
       .catch(done);
     });
     it('populates empty list of orgs', function(done) {
+      console.log('about to call find');
       User.find().populate('orgs')
       .then(function(users) {
+        console.log('users', users);
         var user = users[0]
-        console.log(user);
         assert.isNotNull(user.orgs);
         assert.equal(user.orgs.length, 1);
         done();

@@ -13,7 +13,7 @@ module.exports = {
 
     orgs: {
       collection: 'org',
-      via: 'userid',
+      via: 'user_id',
       through: 'orgmembership'
     }
   }
