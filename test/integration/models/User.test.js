@@ -12,5 +12,15 @@ describe('User', function() {
       })
       .catch(done);
     });
+    it('should  not find users', function (done) {
+      // verify that database gets cleaned up
+      var testEmail = 'sue@test.com'
+      User.find()
+      .then(function(users) {
+        assert.equal(users.length, 0);
+        done();
+      })
+      .catch(done);
+    });
   });
 });

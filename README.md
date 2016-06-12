@@ -29,11 +29,13 @@ sails generate model user username:email
 
 in `config/models.js` (at the bottom):
 ```
+connection: 'postgresql',
 migrate: 'safe'
 ```
 
 set up for testing
 ```
+npm install async --save
 npm install mocha chai sails-memory --save-dev --loglevel=error
 mkdir -p test/integration/models
 echo "--timeout 5s" >> test/mocha.opts
@@ -76,6 +78,16 @@ beforeEach(function(done) {
 " >> test/bootstrap.test.js
 ```
 
+in `config/connections.js`
+
+```
+postgresql: {
+  adapter     : 'sails-postgresql',
+  host        : 'localhost',
+  database    : 'org_example',
+},
+```
+
 create User model test file: `/test/integration/models/User.test.js`;
 
 ```
@@ -96,3 +108,26 @@ describe('User', function() {
   });
 });
 ```
+
+Set up the database
+```
+createdb org_example
+npm install --save sails-db-migrate db-migrate pg sails-postgresql
+```
+
+
+```
+echo "
+module.exports.migrations = {
+  // connection name matches a field from config/connections.js
+  connection: 'postgresql'
+};
+" >> config/migrations.js
+```
+
+set up the grunt task
+
+```
+echo "
+module.exports = require('sails-db-migrate').gruntTasks;
+" >> tasks/register/dbMigrate.js

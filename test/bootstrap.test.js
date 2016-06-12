@@ -1,4 +1,5 @@
 
+var async = require('async');
 var sails = require('sails');
 
 before(function(done) {
@@ -7,13 +8,13 @@ before(function(done) {
     environment: 'test',
     port: 9999,   // so we can run the app and tests at the same time
     hostName: 'localhost:9999',
-    connections: {
-      testDB: {
-        adapter: 'sails-memory'
-      }
-    },
+    // connections: {
+    //   testDB: {
+    //     adapter: 'sails-memory'
+    //   }
+    // },
     models: {
-      connection: 'testDB'
+      connection: 'postgresql'
     },
   }, function(err, server) {
     if (err) return done(err);
@@ -22,14 +23,21 @@ before(function(done) {
   });
 });
 
-after(function(done) {
-  // here you can clear fixtures, etc.
-  sails.lower(done);
+afterEach(function(done) {
+  destroyFuncs = [];
+  for (modelName in sails.models) {
+    destroyFuncs.push(function(callback) {
+      sails.models[modelName].destroy({})
+      .exec(function(err) {
+        callback(null, err)
+      });
+    })
+  }
+  async.parallel(destroyFuncs, function(err, results) {
+    done(err);
+  })
 });
 
-beforeEach(function(done) {
-  // Drops database between each test.  This works because we use
-  // the memory database
-  sails.once('hook:orm:reloaded', done);
-  sails.emit('hook:orm:reload');
-});
+after(function(done) {
+  sails.lower(done);
+})
