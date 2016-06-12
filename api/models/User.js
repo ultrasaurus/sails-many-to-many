@@ -6,14 +6,11 @@
  */
 
 module.exports = {
-
   attributes: {
-
-    username : { type: 'email' },
-
+    username : 'email',
     orgs: {
       collection: 'org',
-      via: 'user_id',
+      via: 'user',
       through: 'orgmembership'
     }
   }

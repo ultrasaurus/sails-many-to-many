@@ -6,15 +6,12 @@
  */
 
 module.exports = {
-  tableName: 'org',
   attributes: {
-    name : { type: 'string' }
+    name : 'string',
+    users: {
+      collection: 'user',
+      via: 'org',
+      through: 'orgmembership'
+    }
   },
-
-  users: {
-    collection: 'user',
-    via: 'org',
-    through: 'orgmembership'
-  }
-
 };
