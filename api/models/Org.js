@@ -10,7 +10,7 @@ module.exports = {
     name : 'string',
     users: {
       collection: 'user',
-      via: 'org',
+      via: 'orgs',
       through: 'orgmembership'
     }
   },

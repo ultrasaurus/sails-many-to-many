@@ -8,7 +8,7 @@
 module.exports = {
   tableName: 'org_membership',
   attributes: {
-    user: { model: 'User', columnName: 'user_id', foreignKey: true},
-    org: { model: 'Org',  columnName: 'org_id', foreignKey: true}
+    users: { model: 'User', columnName: 'user_id', foreignKey: true},
+    orgs: { model: 'Org',  columnName: 'org_id', foreignKey: true}
   }
 };

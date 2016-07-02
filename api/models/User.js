@@ -10,7 +10,7 @@ module.exports = {
     username : 'email',
     orgs: {
       collection: 'org',
-      via: 'user',
+      via: 'users',
       through: 'orgmembership'
     }
   }
